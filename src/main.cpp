@@ -3526,8 +3526,8 @@ void setup(void) {
     display.setBrightness(32);
     M5.begin();
     display.setRotation(1);
-    display.drawBmp(bmp_logo, sizeof(bmp_logo), 0, 0, display.width(),
-                    display.height(), 0, 0, 1.0f, 1.0f, datum_t::middle_center);
+    // display.drawBmp(bmp_logo, sizeof(bmp_logo), 0, 0, display.width(),
+    //                 display.height(), 0, 0, 1.0f, 1.0f, datum_t::middle_center);
 
     {
         auto cfg             = M5.Speaker.config();
