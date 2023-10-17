@@ -1589,7 +1589,7 @@ class config_ui_t : public container_ui_t {
         static constexpr const localize_text_t lt_Network = {"Network", "网络",
                                                              "ネットワーク"};
         static constexpr const localize_text_t lt_Cloud   = {
-            "Cloud", "云监控配置", "クラウド"};
+              "Cloud", "云监控配置", "クラウド"};
         static constexpr const localize_text_t lt_Alarm = {"Alarm", "报警设置",
                                                            "アラーム"};
         static constexpr const localize_text_t lt_Sensor = {
@@ -1616,10 +1616,10 @@ class config_ui_t : public container_ui_t {
             "LAN Stream Quality", "局域网视频流画质", "LANモニタの画質"};
         static constexpr const localize_text_t lt_Factory_Reset = {
             "Factory Reset", "恢复出厂设置", "出荷時設定に戻す"};
-        static constexpr const localize_text_t lt_Staff = {"Staff", "参与者",
+        static constexpr const localize_text_t lt_Staff = {"Owner", "参与者",
                                                            "開発スタッフ"};
         static constexpr const localize_text_t lt_Staff_option = {
-            "Display Info", "显示信息", "情報表示"};
+            "Owner Info", "显示信息", "情報表示"};
         static constexpr const localize_text_t lt_Sens_TempHighest = {
             "Upper Temperature", "上限温度", "上限温度"};
         static constexpr const localize_text_t lt_Sens_TempLowest = {
@@ -2783,15 +2783,15 @@ uint8_t changeLayout(uint8_t layout_idx) {
                 default:
                     layout_idx = 0;
                     hist_rect  = {
-                        image_rect.right() + 1, header_rect.bottom() + 1,
-                        disp_w - image_rect.right(),
-                        image_rect.bottom() - header_rect.bottom() - 1};
+                         image_rect.right() + 1, header_rect.bottom() + 1,
+                         disp_w - image_rect.right(),
+                         image_rect.bottom() - header_rect.bottom() - 1};
                     if (image_rect.h < disp_h) {
                         graph_rect = {image_rect.x, image_rect.bottom() + 1,
                                       disp_w >> 1,
                                       disp_h - image_rect.bottom()};
                         text_rect  = {graph_rect.right() + 1, graph_rect.y,
-                                     disp_w - graph_rect.right(), graph_rect.h};
+                                      disp_w - graph_rect.right(), graph_rect.h};
                     }
                     break;
 
@@ -2815,7 +2815,7 @@ uint8_t changeLayout(uint8_t layout_idx) {
                         image_rect.bottom() - header_rect.bottom() - 1};
                     if (image_rect.h < disp_h) {
                         hist_rect  = {image_rect.x, image_rect.bottom() + 1,
-                                     disp_w >> 1, disp_h - image_rect.bottom()};
+                                      disp_w >> 1, disp_h - image_rect.bottom()};
                         graph_rect = {hist_rect.right() + 1, hist_rect.y,
                                       disp_w - hist_rect.right(), hist_rect.h};
                     }
@@ -2825,9 +2825,9 @@ uint8_t changeLayout(uint8_t layout_idx) {
                     header_rect.w = disp_w / 3;
                     header_rect.x = (disp_w + ox) - header_rect.w;
                     image_rect    = {header_rect.x, header_rect.bottom() + 1,
-                                  header_rect.w, header_rect.w * 3 >> 2};
+                                     header_rect.w, header_rect.w * 3 >> 2};
                     graph_rect    = {header_rect.x, image_rect.bottom() + 1,
-                                  header_rect.w, disp_h - image_rect.bottom()};
+                                     header_rect.w, disp_h - image_rect.bottom()};
                     hist_rect = {ox, oy, disp_w - header_rect.w - 1, disp_h};
                     break;
 
@@ -2835,9 +2835,9 @@ uint8_t changeLayout(uint8_t layout_idx) {
                     header_rect.w = disp_w / 3;
                     header_rect.x = (disp_w + ox) - header_rect.w;
                     image_rect    = {header_rect.x, header_rect.bottom() + 1,
-                                  header_rect.w, header_rect.w * 3 >> 2};
+                                     header_rect.w, header_rect.w * 3 >> 2};
                     hist_rect     = {header_rect.x, image_rect.bottom() + 1,
-                                 header_rect.w, disp_h - image_rect.bottom()};
+                                     header_rect.w, disp_h - image_rect.bottom()};
                     graph_rect = {ox, oy, disp_w - header_rect.w - 1, disp_h};
                     break;
 
@@ -2845,13 +2845,13 @@ uint8_t changeLayout(uint8_t layout_idx) {
                     header_rect.w = disp_w / 3;
                     header_rect.x = (disp_w + ox) - header_rect.w;
                     image_rect    = {header_rect.x, header_rect.bottom() + 1,
-                                  header_rect.w, header_rect.w * 3 >> 2};
+                                     header_rect.w, header_rect.w * 3 >> 2};
                     text_rect     = {header_rect.x, image_rect.bottom() + 1,
-                                 header_rect.w, disp_h - image_rect.bottom()};
+                                     header_rect.w, disp_h - image_rect.bottom()};
                     graph_rect    = {ox, oy, disp_w - header_rect.w - 1,
-                                  disp_h >> 1};
+                                     disp_h >> 1};
                     hist_rect     = {ox, graph_rect.bottom() + 1, graph_rect.w,
-                                 disp_h - graph_rect.bottom()};
+                                     disp_h - graph_rect.bottom()};
                     break;
 
                     // case 3:
@@ -3013,9 +3013,9 @@ void drawTask(void*) {
         if (prev_misc_staff != (bool)draw_param.misc_staff) {
             prev_misc_staff = !prev_misc_staff;
             if (prev_misc_staff) {
-                display.drawJpg(jpg_staff, sizeof(jpg_staff), 0, 0,
-                                display.width(), display.height(), 0, 0, 1.0f,
-                                1.0f, datum_t::middle_center);
+                // display.drawJpg(jpg_staff, sizeof(jpg_staff), 0, 0,
+                //                 display.width(), display.height(), 0, 0, 1.0f,
+                //                 1.0f, datum_t::middle_center);
             }
         }
 
@@ -3527,7 +3527,8 @@ void setup(void) {
     M5.begin();
     display.setRotation(1);
     // display.drawBmp(bmp_logo, sizeof(bmp_logo), 0, 0, display.width(),
-    //                 display.height(), 0, 0, 1.0f, 1.0f, datum_t::middle_center);
+    //                 display.height(), 0, 0, 1.0f, 1.0f,
+    //                 datum_t::middle_center);
 
     {
         auto cfg             = M5.Speaker.config();
@@ -3648,9 +3649,13 @@ void setup(void) {
         snprintf(lines[0], line_len, "YR-Design:%d.%d.%d", firmware_ver_major,
                  firmware_ver_minor, firmware_ver_patch);
         size_t line_idx = 1;
-        snprintf(lines[line_idx++], line_len, "Sensor:%s/%d%%",
-                 draw_param.sens_refreshrate.getText(),
-                 draw_param.sens_emissivity.get());
+        // snprintf(lines[line_idx++], line_len, "Sensor:%s/%d%%",
+        //          draw_param.sens_refreshrate.getText(),
+        //          draw_param.sens_emissivity.get());
+
+        snprintf(lines[line_idx++], line_len, "090-7118-1987");
+
+
         if (draw_param.net_running_mode & draw_param.net_running_mode_cloud) {
             snprintf(lines[line_idx++], line_len, "Mode:%s(%s)",
                      draw_param.net_running_mode.getText(),
@@ -3681,9 +3686,11 @@ void setup(void) {
         // overlay_ui.setClientRect({ display.width() >> 1, display.height() >>
         // 1, 0, 0});
         // orginal:
-        // overlay_ui.show(128, lines[0], lines[1], lines[2], lines[3], lines[4],
+        // overlay_ui.show(128, lines[0], lines[1], lines[2], lines[3],
+        // lines[4],
         //                 lines[5]);
-        overlay_ui.show(128, lines[0]);
+        // YR-design only
+        // overlay_ui.show(128, lines[0]);
     }
 
     xTaskCreatePinnedToCore(cloudTask, "cloudTask", 8192, nullptr, 3, nullptr,
