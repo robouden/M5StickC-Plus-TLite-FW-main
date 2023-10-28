@@ -48,7 +48,7 @@ void esp_timer_impl_update_apb_freq(
     uint32_t apb_ticks_per_us);  // private in IDF
 }
 
-static uint8_t loop_count = 0;
+int loop_counts = 0;
 
 static constexpr const uint16_t label_ui_text_color = 0x8610u;
 
@@ -3016,8 +3016,8 @@ void drawTask(void*) {
             prev_misc_staff = !prev_misc_staff;
             if (prev_misc_staff) {
                 // display.drawJpg(jpg_staff, sizeof(jpg_staff), 0, 0,
-                //                 display.width(), display.height(), 0, 0, 1.0f,
-                //                 1.0f, datum_t::middle_center);
+                //                 display.width(), display.height(), 0,
+                //                 0, 1.0f, 1.0f, datum_t::middle_center);
             }
         }
 
@@ -3657,7 +3657,6 @@ void setup(void) {
 
         snprintf(lines[line_idx++], line_len, "090-7118-1987");
 
-
         if (draw_param.net_running_mode & draw_param.net_running_mode_cloud) {
             snprintf(lines[line_idx++], line_len, "Mode:%s(%s)",
                      draw_param.net_running_mode.getText(),
@@ -3701,8 +3700,6 @@ void setup(void) {
     // debug
     // pinMode(GPIO_NUM_32, OUTPUT);
     // pinMode(GPIO_NUM_33, OUTPUT);
-
-    
 }
 
 void loop(void) {
@@ -3715,11 +3712,6 @@ void loop(void) {
             draw_param.saveNvs();
         }
     }
-
-        //shutdown after 200000 loops by Rob
-        if (++loop_count == 200000) {
-            M5.Power.powerOff();
-        }
 
     uint32_t msec = millis();
 
@@ -3874,6 +3866,13 @@ void loop(void) {
     //*/
 
     M5.update();
+
+    // Serial.print(loop_counts);
+    // shutdown after about 17 seconds by Rob
+    loop_counts++;
+    if (loop_counts > 2000) {
+        M5.Power.powerOff();
+    }
     /*
         if (M5.BtnPWR.wasClicked()) {
             confmode = !confmode;
